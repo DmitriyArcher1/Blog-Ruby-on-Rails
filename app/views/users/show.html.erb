@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyBlog</title>
+</head>
+<body>
+
+    <%= link_to "На главную", root_path %>
+
+    <section>
+
+        <div align="center">
+            <% if user_signed_in? %>
+                <% if @user.avatar.attached? %>
+                    <%= image_tag @user.avatar, style: "width: 200px; height: auto; border-radius: 100px;" %>
+                <% end %>
+
+                <div align="center">
+                    <span><%= @user.username %></span>
+                </div>
+
+                <div align="center">
+                    <%= link_to "Изменить профиль", edit_user_registration_path %>
+                    <%= button_to "Выйти", destroy_user_session_path, method: :delete %>
+                </div>
+            <% end %>
+        </div>
+        
+    </section>
+
+
+    
+</body>
+</html>

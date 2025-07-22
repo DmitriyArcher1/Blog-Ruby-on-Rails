@@ -7,6 +7,18 @@
 </head>
 <body>
 
+    <% if user_signed_in? %>
+        <div align="center">
+            <%= link_to "Профиль пользователя", user_path(current_user) %> <br>
+        </div>
+    <% else %>
+        <div>
+            <%= link_to "Войти", new_user_session_path %>
+            <%= link_to "Регистрация", new_user_registration_path %>
+        </div>
+    <% end %>
+    
+
     <section>
         <div align="center">
             <h1>Главная страница</h1>
