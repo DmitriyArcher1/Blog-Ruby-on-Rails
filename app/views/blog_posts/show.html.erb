@@ -1,0 +1,18 @@
+<h1 align="center" style="font-size: 19px;">Автор поста: <%= @blog_post.user.username %></h1>
+<% if @blog_post.user.avatar.attached? %>
+    <img style="width: 160px; height: 160px; border-radius: 100px; display: block; margin: 0 auto;" <%= image_tag url_for(@blog_post.user.avatar) %>
+<% end %>
+
+<div align="center">
+    <h1><%= @blog_post.title %></h1>
+    <% if @blog_post.image.attached? %>
+        <img style="width: 750px; height: 600px;" <%= image_tag url_for(@blog_post.image) %>
+    <% end %>
+    <p><%= @blog_post.content %></p>
+</div>
+
+
+<% if user_signed_in? && @blog_post.user == current_user %>
+    <h1 align="center" style="font-size: 19px;"><%= link_to "Изменить пост", "/blog_posts/#{@blog_post.id}/edit", class: "edit_post" %></h1>
+<% end %>
+

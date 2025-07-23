@@ -1,0 +1,86 @@
+/* index.html.erb */
+.container {
+    width: 1300px; 
+    margin: 0 auto; 
+    padding: 0;
+}
+
+.wrapper {
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    gap: 30px;
+}
+
+.wrapper_post {
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 700px;
+    padding: 20px;
+    margin: 0 auto;
+}
+
+
+/* Ссылки на главной странице */
+.index_link_to_post {
+    display: inline-block;
+    margin-top: 10px;
+
+    text-decoration: none;
+    color: #000;
+    font-size: 20px;
+    border: 2px solid #1038d3;
+    color: #1038d3;
+    padding: 5px 20px;
+
+    transition: all 0.3s ease-in-out;
+}
+
+.index_link_to_post:hover {
+    background-color: #1038d3;
+    color: #fff;
+    border-color: #1038d3;
+}
+
+/* Ссылка на добавление поста */
+.add_new_post {
+    text-decoration: none;
+    color: #1038d3;
+
+    transition: all 0.3s ease-in-out
+}
+
+.add_new_post:hover {
+    color: #081a62;
+}
+
+/* Ссылка на профиль пользователя */
+.user_profile {
+    text-decoration: none;
+    color: #1038d3;
+
+    transition: all 0.3s ease-in-out
+}
+
+.user_profile:hover {
+    color: #081a62;
+}
+
+/* show.html.erb */
+/* Ссылка на изменение поста */
+.edit_post {
+    text-decoration: none;
+    color: #000;
+    font-size: 20px;
+    border: 2px solid #1038d3;
+    color: #1038d3;
+    padding: 5px 20px;
+
+    transition: all 0.3s ease-in-out;
+}
+
+.edit_post:hover {
+    background-color: #1038d3;
+    color: #fff;
+    border-color: #1038d3;
+}
