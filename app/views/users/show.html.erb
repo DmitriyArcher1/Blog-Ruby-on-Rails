@@ -4,17 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MyBlog</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
+    <header class="header">
+        <div class="header-top">
+            <%= link_to "ФОТО БЛОГ", root_path, class: "logo" %>
 
-    <%= link_to "На главную", root_path, class: "root_path" %>
+            <nav class="navigation">
+                <ul class="menu">
+                    <li class="menu-element">
+                        <%= link_to "Главная", root_path %>
+                    </li>
+
+                    <li class="menu-element">
+                        <%= link_to "Добавить пост", "/blog_posts/new" %>
+                    </li>
+                </ul>
+            </nav>
+
+            <% if !user_signed_in? %>
+                <div>
+                    <%= link_to "Войти", new_user_session_path, class: "menu-element" %>
+                    <%= link_to "Регистрация", new_user_registration_path, class: "menu-element" %>
+                </div>
+            <% end %>
+            
+        </div>
+    </header>
 
     <section>
 
         <div align="center">
             <% if user_signed_in? %>
                 <% if @user.avatar.attached? %>
-                    <%= image_tag @user.avatar, style: "width: 200px; height: auto; border-radius: 100px;" %>
+                    <%= image_tag @user.avatar, style: "width: 200px; height: auto; border-radius: 100px; margin-top: 25px;" %>
                 <% end %>
 
                 <div align="center">
@@ -41,7 +68,7 @@
                     <div align="center" class="wrapper_post">
                         <h2> <%= blog_post.title%> </h2>
                         <img style="width: 500px; height: 500px;" <%= image_tag blog_post.image %>
-                        <%= link_to "Подробнее", blog_post, class: "index_link_to_post" %>
+                        <%= link_to "Читать", blog_post, class: "index_link_to_post" %>
                     </div>
                     <br>
                 <% end %>
