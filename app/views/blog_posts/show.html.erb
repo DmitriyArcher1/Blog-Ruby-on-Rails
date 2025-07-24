@@ -1,18 +1,74 @@
-<h1 align="center" style="font-size: 19px;">Автор поста: <%= @blog_post.user.username %></h1>
-<% if @blog_post.user.avatar.attached? %>
-    <img style="width: 160px; height: 160px; border-radius: 100px; display: block; margin: 0 auto;" <%= image_tag url_for(@blog_post.user.avatar) %>
-<% end %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyBlog</title>
 
-<div align="center">
-    <h1><%= @blog_post.title %></h1>
-    <% if @blog_post.image.attached? %>
-        <img style="width: 750px; height: 600px;" <%= image_tag url_for(@blog_post.image) %>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="header-top">
+            <%= link_to "ФОТО БЛОГ", root_path, class: "logo" %>
+
+            <nav class="navigation">
+                <ul class="menu">
+                    <li class="menu-element">
+                        <%= link_to "Главная", root_path %>
+                    </li>
+
+                    <% if user_signed_in? %>
+                        <li class="menu-element">
+                            <%= link_to "Мой профиль", user_path(current_user) %>
+                        </li>
+                    <% end %>
+                    
+                </ul>
+            </nav>
+
+            <% if !user_signed_in? %>
+                <div>
+                    <%= link_to "Войти", new_user_session_path, class: "menu-element" %>
+                    <%= link_to "Регистрация", new_user_registration_path, class: "menu-element" %>
+                </div>
+            <% end %>
+            
+        </div>
+    </header>
+
+    <h1 align="center" style="font-size: 19px;">Автор поста: <%= @blog_post.user.username %></h1>
+    <% if @blog_post.user.avatar.attached? %>
+        <img style="width: 160px; height: 160px; border-radius: 100px; display: block; margin: 0 auto;" <%= image_tag url_for(@blog_post.user.avatar) %>
     <% end %>
-    <p><%= @blog_post.content %></p>
-</div>
+
+    <% if user_signed_in? && current_user != @blog_post.user %>
+        <% if current_user.subscribed_users.include?(@blog_post.user) %>
+            <% subscription = current_user.subscriptions.find_by(subscribed_to_id: @blog_post.user.id) %>
+            <%= button_to "Отписаться от поста", unsubscribe_path(subscription), method: :delete, class: "subs_button" %>
+        <% else %>
+            <%= button_to "Подписаться на пост", subscribe_path(subscription: { subscribed_to_id: @blog_post.user.id }), method: :post, class: "subs_button" %>
+        <% end %>
+    <% end %>
+
+    <div align="center">
+        <h1><%= @blog_post.title %></h1>
+        <% if @blog_post.image.attached? %>
+            <img style="width: 750px; height: 600px;" <%= image_tag url_for(@blog_post.image) %>
+        <% end %>
+        <p><%= @blog_post.content %></p>
+    </div>
 
 
-<% if user_signed_in? && @blog_post.user == current_user %>
-    <h1 align="center" style="font-size: 19px;"><%= link_to "Изменить пост", "/blog_posts/#{@blog_post.id}/edit", class: "edit_post" %></h1>
-<% end %>
+    <% if user_signed_in? && @blog_post.user == current_user %>
+        <h1 align="center" style="font-size: 19px;"><%= link_to "Изменить пост", "/blog_posts/#{@blog_post.id}/edit", class: "edit_post" %></h1>
+    <% end %>
+
+</body>
+
+
 

@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   # Can be used by load balancers and uptime monitors to verify that the app is live.
 
   get "/users/:id", to: "users#show", as: "user"
+  get "/users/:id/show_subs", to: "users#show_subs", as: :user_show_subs
 
 
   get "up" => "rails/health#show", as: :rails_health_check
@@ -16,6 +17,9 @@ Rails.application.routes.draw do
   delete "/blog_posts/:id", to: "blog_posts#destroy"
   get "/blog_posts/:id/edit", to: "blog_posts#edit", as: :edit_blog_post
   post "/blog_posts", to: "blog_posts#create", as: :blog_posts
+
+  post "/subscribe/:id", to: "subscriptions#create", as: :subscribe
+  delete "/subscribe/:id", to: "subscriptions#destroy", as: :unsubscribe
 
 
 
