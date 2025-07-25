@@ -80,6 +80,7 @@ hr {
 }
 
 .wrapper_post {
+    text-align: center;
     border-radius: 10px;
     background-color: #fff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -88,14 +89,22 @@ hr {
     margin: 0 auto;
 }
 
+
 .blog_title {
     font-size: 150px;
     color: #403e3d;
 }
 
 .blog_post_title {
+    text-align: center;
     font-weight: 900;
     font-size: 25px;
+}
+
+.user_avatar {
+    width: 75px;
+    height: 75px;
+    border-radius: 100px;
 }
 
 /* Ссылки на главной странице */

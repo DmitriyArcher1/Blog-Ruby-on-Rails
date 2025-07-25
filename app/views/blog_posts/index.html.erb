@@ -31,6 +31,14 @@
                         <% end %>
                     </li>
 
+                    <li class="menu-element">
+                        <% if user_signed_in? %>
+                            <% if current_user.avatar.attached? %>
+                                <img style="width: 50px; height: 50px; border-radius: 100px;" <%= image_tag url_for(current_user.avatar) %>
+                            <% end %>
+                        <% end %>
+                    </li>
+
                     <% if !user_signed_in? %>
                         <li class="menu-element">
                             <%= link_to "Войти", new_user_session_path %>
@@ -62,7 +70,13 @@
             <div class="wrapper">
                 <% @blog_posts.each do |blog_post| %>
                     <div align="center" class="wrapper_post">
+                        
+                        <% if blog_post.user.avatar.attached? %>
+                            <img class="user_avatar" <%= image_tag url_for(blog_post.user.avatar) %>
+                        <% end %>
+                        
                         <h2 class="blog_post_title"> <%= blog_post.title%> </h2>
+
                         <hr>
                         <img style="width: 500px; height: 500px; border-radius: 12px;" <%= image_tag blog_post.image %>
                         <h4>Дата публикации: <%= blog_post.created_at %> <br> </h4>

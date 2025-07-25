@@ -49,9 +49,9 @@
     <% if user_signed_in? && current_user != @blog_post.user %>
         <% if current_user.subscribed_users.include?(@blog_post.user) %>
             <% subscription = current_user.subscriptions.find_by(subscribed_to_id: @blog_post.user.id) %>
-            <%= button_to "Отписаться от поста", unsubscribe_path(subscription), method: :delete, class: "subs_button" %>
+            <%= button_to "Отписаться от #{@blog_post.user.username}", unsubscribe_path(subscription), method: :delete, class: "subs_button" %>
         <% else %>
-            <%= button_to "Подписаться на пост", subscribe_path(subscription: { subscribed_to_id: @blog_post.user.id }), method: :post, class: "subs_button" %>
+            <%= button_to "Подписаться на #{@blog_post.user.username}", subscribe_path(subscription: { subscribed_to_id: @blog_post.user.id }), method: :post, class: "subs_button" %>
         <% end %>
     <% end %>
 
