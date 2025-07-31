@@ -3,7 +3,17 @@ class BlogPostsController < ApplicationController
   before_action :authenticate_user!, only: [ :new, :update, :destroy ]
   before_action :authorize_user, only: [ :edit, :update, :destroy ]
   def index
-    @blog_posts = BlogPost.all
+    # @blog_posts = BlogPost.all
+
+    if params[:search].present?
+      @blog_posts = BlogPost.where("title LIKE ?", "%#{params[:search]}%")
+      @search_term = params[:search]
+      @no_results = @blog_posts.empty?
+    else
+      @blog_posts = BlogPost.all
+      @search_term = nil
+      @no_results = false
+    end
   end
 
   def show

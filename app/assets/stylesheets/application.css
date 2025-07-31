@@ -13,3 +13,49 @@ body{
     background-color: #dbdbdb;
     font-family: "Montserrat", serif;
 }
+
+.highlight {
+    /* background-color: yellow; */
+    color: #ff7800;
+}
+
+.no_result_search {
+    text-align: center;
+    font-size: 45px;
+    color: #848484;
+}
+
+.search_field {
+    padding: 8px 15px;
+    border: 1px solid #c4c4c4;
+    border-radius: 20px;
+    font-size: 15px;
+    width: 210px;
+    margin-right: 10px;
+    outline: none;
+
+    &:focus {
+    /* border-color: #ff0000; */
+    box-shadow: 0 0 5px rgb(177, 177, 177);
+    }
+}
+
+.search_button {
+    background-color: #000;
+    border: none;
+    color: white;
+    padding: 9px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    cursor: pointer;
+    border-radius: 33px;
+    font-weight: 900;
+
+    transition: all 0.2s linear;
+
+    &:hover {
+        background-color: #222222;
+    }
+}
