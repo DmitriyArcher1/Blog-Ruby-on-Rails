@@ -50,6 +50,8 @@
             <% if user_signed_in? %>
                 <% if @user.avatar.attached? %>
                     <%= image_tag @user.avatar, style: "width: 200px; height: auto; border-radius: 100px; margin-top: 25px;" %>
+                <% else %>
+                    <%= image_tag "base-avatar.jpg", style: "width: 200px; height: auto; border-radius: 100px; margin-top: 25px;" %>
                 <% end %>
 
                 <div align="center">
