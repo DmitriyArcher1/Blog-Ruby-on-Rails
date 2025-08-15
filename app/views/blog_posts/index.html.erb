@@ -18,14 +18,17 @@
             <nav class="navigation">
                 <ul class="menu">
                     <li class="menu-element">
+                        <i style="color: #000;" class="fa-solid fa-house"></i>
                         <%= link_to "Главная", root_path %>
                     </li>
 
                     <li class="menu-element">
+                        <i style="color: #000;" class="fa-solid fa-plus"></i>
                         <%= link_to "Добавить пост", "/blog_posts/new" %>
                     </li>
 
                     <li class="menu-element">
+                        <i style="color: #000;" class="fa-solid fa-user"></i>
                         <% if user_signed_in? %>
                             <%= link_to "Мой профиль", user_path(current_user) %>
                         <% end %>
@@ -71,8 +74,6 @@
         </div>
     </section>
 
-    
-    
 
     <section>
         <div class="container">
@@ -100,6 +101,15 @@
                             <hr>
                             <img style="width: 500px; height: 500px; border-radius: 12px;" <%= image_tag blog_post.image %>
                             <h4>Дата публикации: <%= blog_post.created_at %> <br> </h4>
+
+                            <p><i class="fa-solid fa-thumbs-up"></i> <%= blog_post.likes.count %></p>
+
+                            <% if blog_post.likes.exists? %>
+                                <%= button_to 'Не нравится', blog_post_like_path(blog_post, blog_post.likes.first), method: :delete, class: "like_button" %>
+                            <% else %>
+                                <%= button_to "Нравится", blog_post_likes_path(blog_post), method: :post, data: { turbo_stream: true }, class: "like_button" %>
+                            <% end %>
+
                             <%= link_to "Читать", blog_post, class: "index_link_to_post" %>
                         </div>
                         <br>
@@ -109,6 +119,9 @@
             </div>
         </div>
     </section>
+
+
+    <script src="https://kit.fontawesome.com/c6ba37b0b2.js" crossorigin="anonymous"></script>
     
 </body>
 </html>

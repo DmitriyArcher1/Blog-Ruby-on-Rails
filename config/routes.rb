@@ -18,8 +18,15 @@ Rails.application.routes.draw do
   get "/blog_posts/:id/edit", to: "blog_posts#edit", as: :edit_blog_post
   post "/blog_posts", to: "blog_posts#create", as: :blog_posts
 
+  resources :blog_posts do
+    resources :likes, only: [ :create, :destroy ]
+  end
+
   post "/subscribe/:id", to: "subscriptions#create", as: :subscribe
   delete "/subscribe/:id", to: "subscriptions#destroy", as: :unsubscribe
+
+  # post "/blog_posts/:id/likes", to: "likes#create"
+  # delete "/blog_posts/:id/likes/:id", to: "likes#destroy"
 
 
 
