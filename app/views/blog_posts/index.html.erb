@@ -28,8 +28,8 @@
                     </li>
 
                     <li class="menu-element">
-                        <i style="color: #000;" class="fa-solid fa-user"></i>
                         <% if user_signed_in? %>
+                            <i style="color: #000;" class="fa-solid fa-user"></i>
                             <%= link_to "Мой профиль", user_path(current_user) %>
                         <% end %>
                     </li>

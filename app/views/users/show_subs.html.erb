@@ -77,7 +77,7 @@
                     <% @subscribed_posts.each do |post| %>
                         <div align="center" class="wrapper_post">
                             <h2> <%= post.title%> </h2>
-                            <img style="width: 500px; height: 500px;" <%= image_tag post.image %>
+                            <img style="width: 500px; height: 500px; border-radius: 20px;" <%= image_tag post.image %>
                             <%= link_to "Читать", post, class: "index_link_to_post" %>
                         </div>
                         <br>
