@@ -6,6 +6,7 @@ class User < ApplicationRecord
          authentication_keys: [ :login ]
 
   has_many :blog_posts, dependent: :destroy
+  has_many :likes, dependent: :destroy
   has_many :blog_posts, foreign_key: :user_id
   has_many :subscriptions, foreign_key: :subscriber_id
   has_many :subscribed_users, through: :subscriptions, source: :subscribed_to, class_name: "User"

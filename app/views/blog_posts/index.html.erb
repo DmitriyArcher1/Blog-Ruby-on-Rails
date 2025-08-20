@@ -103,12 +103,16 @@
                             <h4>Дата публикации: <%= blog_post.created_at %> <br> </h4>
 
                             <p><i class="fa-solid fa-thumbs-up"></i> <%= blog_post.likes.count %></p>
-
-                            <% if blog_post.likes.exists? %>
-                                <%= button_to 'Не нравится', blog_post_like_path(blog_post, blog_post.likes.first), method: :delete, class: "like_button" %>
-                            <% else %>
-                                <%= button_to "Нравится", blog_post_likes_path(blog_post), method: :post, data: { turbo_stream: true }, class: "like_button" %>
+                            
+                            <!-- blog_post.likes.exists? -->
+                            <% if user_signed_in? %>
+                                <% if current_user.likes.exists?(blog_post: blog_post) %>
+                                    <%= button_to 'Не нравится', blog_post_like_path(blog_post, blog_post.likes.first), method: :delete, class: "like_button" %>
+                                <% else %>
+                                    <%= button_to "Нравится", blog_post_likes_path(blog_post), method: :post, data: { turbo_stream: true }, class: "like_button" %>
+                                <% end %>
                             <% end %>
+                            
 
                             <%= link_to "Читать", blog_post, class: "index_link_to_post" %>
                         </div>

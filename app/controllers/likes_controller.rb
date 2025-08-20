@@ -1,8 +1,10 @@
 class LikesController < ApplicationController
-  before_action :set_post
+  # before_action :set_post
 
   def create
-    @like = @blog_post.likes.build
+    @blog_post = BlogPost.find(params[:blog_post_id])
+    @like = @blog_post.likes.build(user: current_user)
+
     if @like.save
       redirect_to root_path, notice: "Пост понравился!"
     else
@@ -11,17 +13,24 @@ class LikesController < ApplicationController
   end
 
   def destroy
-    @like = @blog_post.likes.find_by(id: params[:id])
-    if @like&.destroy
-      redirect_to root_path, notice: "Лайк удален."
+    @like = Like.find(params[:id])
+    @blog_post = @like.blog_post
+
+    if @like.user == current_user
+      @like.destroy
+      redirect_to root_path, notice: "Лайк удалён"
     else
-      redirect_to root_path, notice: "Не удалось удалить лайк."
+      redirect_to root_path, alert: "Не удалось удалить лайк"
     end
   end
 
   private
 
-  def set_post
-    @blog_post = BlogPost.find(params[:blog_post_id])
+  def like_params
+    params.require(:like).permit(:blog_post_id)
   end
+
+  # def set_post
+  #   @blog_post = BlogPost.find(params[:blog_post_id])
+  # end
 end
