@@ -54,13 +54,15 @@
             <%= button_to "Подписаться на #{@blog_post.user.username}", subscribe_path(subscription: { subscribed_to_id: @blog_post.user.id }), method: :post, class: "subs_button" %>
         <% end %>
     <% end %>
-
+    
     <div align="center">
         <h1><%= @blog_post.title %></h1>
         <% if @blog_post.image.attached? %>
             <img style="width: 750px; height: 600px;" <%= image_tag url_for(@blog_post.image) %>
         <% end %>
-        <p><%= @blog_post.content %></p>
+        <div class="wrapper_text">
+            <p><%= @blog_post.content %></p>
+        </div>
     </div>
 
 

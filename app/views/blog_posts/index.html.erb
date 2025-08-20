@@ -107,9 +107,11 @@
                             <!-- blog_post.likes.exists? -->
                             <% if user_signed_in? %>
                                 <% if current_user.likes.exists?(blog_post: blog_post) %>
-                                    <%= button_to 'Не нравится', blog_post_like_path(blog_post, blog_post.likes.first), method: :delete, class: "like_button" %>
+                                    <% like = current_user.likes.find_by(blog_post: blog_post) %>
+                                    <!-- blog_post.likes.first -->
+                                    <%= button_to 'Не нравится', blog_post_like_path(blog_post, like), method: :delete, remote: true, class: "like_button" %>
                                 <% else %>
-                                    <%= button_to "Нравится", blog_post_likes_path(blog_post), method: :post, data: { turbo_stream: true }, class: "like_button" %>
+                                    <%= button_to "Нравится", blog_post_likes_path(blog_post), method: :post, remote: true, data: { turbo_stream: true }, class: "like_button" %>
                                 <% end %>
                             <% end %>
                             

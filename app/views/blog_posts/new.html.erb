@@ -1,3 +1,74 @@
-<h1>Новый пост в блоге</h1>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Фото-блог</title>
 
-<%= render partial: "form", locals: {blog_post: @blog_post} %>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="header">
+        <div class="header-top">
+            <%= link_to "ФОТО БЛОГ", root_path, class: "logo" %>
+
+            <nav class="navigation">
+                <ul class="menu">
+                    <li class="menu-element">
+                        <i style="color: #000;" class="fa-solid fa-house"></i>
+                        <%= link_to "Главная", root_path %>
+                    </li>
+
+                    <li class="menu-element">
+                        <% if user_signed_in? %>
+                            <i style="color: #000;" class="fa-solid fa-user"></i>
+                            <%= link_to "Мой профиль", user_path(current_user) %>
+                        <% end %>
+                    </li>
+
+                    <li class="menu-element">
+                        <% if user_signed_in? %>
+                            <% if current_user.avatar.attached? %>
+                                <img style="width: 50px; height: 50px; border-radius: 100px;" <%= image_tag url_for(current_user.avatar) %>
+                            <% else %>
+                                <%= image_tag "base-avatar.jpg", style: "width: 50px; height: 50px; border-radius: 100px;" %>
+                            <% end %>
+                        <% end %>
+                    </li>
+
+                    <% if !user_signed_in? %>
+                        <li class="menu-element">
+                            <%= link_to "Войти", new_user_session_path %>
+                        </li>
+
+                        <li class="menu-element">
+                            <%= link_to "Регистрация", new_user_registration_path %>
+                        </li>
+                    <% end %>
+
+                    
+                    <%= form_tag root_path, method: :get do %>
+                        <%= text_field_tag :search, params[:search], placeholder: "Найти пост", class: "search_field" %>
+                        <%= submit_tag "Поиск", class: "search_button" %>
+                    <% end %>
+                    </li>
+                </ul>
+            </nav>
+
+            
+            
+        </div>
+    </header>
+    
+    <h1 style="text-align: center;">Новый пост в блоге</h1>
+
+    <%= render partial: "form", locals: {blog_post: @blog_post} %>
+
+
+    <script src="https://kit.fontawesome.com/c6ba37b0b2.js" crossorigin="anonymous"></script>
+    
+</body>
+</html>

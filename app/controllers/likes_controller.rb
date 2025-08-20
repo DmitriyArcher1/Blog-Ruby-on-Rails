@@ -1,5 +1,6 @@
 class LikesController < ApplicationController
   # before_action :set_post
+  before_action :authenticate_user!
 
   def create
     @blog_post = BlogPost.find(params[:blog_post_id])
@@ -13,10 +14,12 @@ class LikesController < ApplicationController
   end
 
   def destroy
-    @like = Like.find(params[:id])
-    @blog_post = @like.blog_post
+    @blog_post = BlogPost.find(params[:blog_post_id])
+    @like = @blog_post.likes.find_by(user: current_user, id: params[:id])
+    # @like = Like.find(params[:id])
+    # @blog_post = @like.blog_post
 
-    if @like.user == current_user
+    if @like
       @like.destroy
       redirect_to root_path, notice: "Лайк удалён"
     else

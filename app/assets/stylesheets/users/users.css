@@ -36,6 +36,11 @@
     transition: all 0.3s ease-in-out;
 }
 
+.edit_profile_title {
+    text-align: center;
+    font-size: 30px;
+}
+
 .edit_profile:hover {
     background-color: #3a3a3a;
 }
@@ -58,6 +63,24 @@
     border-radius: 50px;
     padding: 5px 8px;
     cursor: pointer;
+}
+
+.back_button {
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+    color: #000;
+    border: 1px solid #605e5e;
+    width: 100px;
+    border-radius: 15px;
+    padding: 2px 5px;
+
+    transition: all 0.2s linear;
+}
+
+.back_button:hover {
+    color: #fff;
+    background-color: #605e5e;
 }
 
 /* Ссылка на главную страницу */

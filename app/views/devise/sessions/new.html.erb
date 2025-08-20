@@ -1,31 +1,102 @@
-<h2>Войти</h2>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Фото-блог</title>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label "Имя пользователя или email-адрес" %><br />
-    <%= f.text_field :login, autofocus: true, autocomplete: "login" %>
-  </div>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>  
 
-  <!--<div class="field">
-    <%= f.label :username %><br />
-    <%= f.text_field :username, autofocus: true, autocomplete: "text" %>
-  </div>-->
+  <header class="header">
+      <div class="header-top">
+          <%= link_to "ФОТО БЛОГ", root_path, class: "logo" %>
 
-  <div class="field">
-    <%= f.label "Пароль" %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
+          <nav class="navigation">
+              <ul class="menu">
+                  <li class="menu-element">
+                      <i style="color: #000;" class="fa-solid fa-house"></i>
+                      <%= link_to "Главная", root_path %>
+                  </li>
 
-  <% if devise_mapping.rememberable? %>
+                  <li class="menu-element">
+                      <i style="color: #000;" class="fa-solid fa-plus"></i>
+                      <%= link_to "Добавить пост", "/blog_posts/new" %>
+                  </li>
+
+                  <li class="menu-element">
+                      <% if user_signed_in? %>
+                          <i style="color: #000;" class="fa-solid fa-user"></i>
+                          <%= link_to "Мой профиль", user_path(current_user) %>
+                      <% end %>
+                  </li>
+
+                  <li class="menu-element">
+                      <% if user_signed_in? %>
+                          <% if current_user.avatar.attached? %>
+                              <img style="width: 50px; height: 50px; border-radius: 100px;" <%= image_tag url_for(current_user.avatar) %>
+                          <% else %>
+                              <%= image_tag "base-avatar.jpg", style: "width: 50px; height: 50px; border-radius: 100px;" %>
+                          <% end %>
+                      <% end %>
+                  </li>
+
+                  <% if !user_signed_in? %>
+                      <li class="menu-element">
+                          <%= link_to "Регистрация ", new_user_registration_path %>
+                      </li>
+                  <% end %>
+
+                  
+                  <%= form_tag root_path, method: :get do %>
+                      <%= text_field_tag :search, params[:search], placeholder: "Найти пост", class: "search_field" %>
+                      <%= submit_tag "Поиск", class: "search_button" %>
+                  <% end %>
+                  </li>
+              </ul>
+          </nav>
+
+      </div>
+  </header>
+
+  <h2 style="text-align: center; font-size: 30px;">Войти</h2>
+
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label "Запомнить меня" %>
+      <%= f.label "Имя пользователя или email-адрес" %><br />
+      <%= f.text_field :login, autofocus: true, autocomplete: "login" %>
+    </div>
+
+    <!--<div class="field">
+      <%= f.label :username %><br />
+      <%= f.text_field :username, autofocus: true, autocomplete: "text" %>
+    </div>-->
+
+    <div class="field">
+      <%= f.label "Пароль" %><br />
+      <%= f.password_field :password, autocomplete: "current-password" %>
+    </div>
+
+    <% if devise_mapping.rememberable? %>
+      <div class="field">
+        <%= f.check_box :remember_me %>
+        <%= f.label "Запомнить меня" %>
+      </div>
+    <% end %>
+
+    <div class="actions">
+      <%= f.submit "Log in" %>
     </div>
   <% end %>
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
+  <%= render "devise/shared/links" %>
 
-<%= render "devise/shared/links" %>
+  <script src="https://kit.fontawesome.com/c6ba37b0b2.js" crossorigin="anonymous"></script>
+
+</body>
+</html>
+
+
