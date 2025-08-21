@@ -44,6 +44,8 @@
     <h1 align="center" style="font-size: 19px;">Автор поста: <%= @blog_post.user.username %></h1>
     <% if @blog_post.user.avatar.attached? %>
         <img style="width: 160px; height: 160px; border-radius: 100px; display: block; margin: 0 auto;" <%= image_tag url_for(@blog_post.user.avatar) %>
+    <% else %>
+        <%= image_tag "base-avatar.jpg", style: "width: 160px; height: 160px; border-radius: 100px; display: block; margin: 0 auto;" %>
     <% end %>
 
     <% if user_signed_in? && current_user != @blog_post.user %>

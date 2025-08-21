@@ -86,6 +86,8 @@
                             
                             <% if blog_post.user.avatar.attached? %>
                                 <img class="user_avatar" <%= image_tag url_for(blog_post.user.avatar) %>
+                            <% else %>
+                                <%= image_tag "base-avatar.jpg", style: "width: 75px; height: 75px; border-radius: 100px; margin-top: 25px;" %>
                             <% end %>
 
                             <% if @search_term.present? %>
