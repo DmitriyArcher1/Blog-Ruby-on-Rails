@@ -106,3 +106,20 @@
     font-weight: 500;
     color: #9d9d9d;
 }
+
+/* Ссылка для восстановления пароля */
+.link_forgot_password {
+    text-decoration: none;
+    color: #574848;
+    border: 1px solid #868686;
+    padding: 7px 7px;
+    border-radius: 20px;
+    font-weight: 700;
+
+    transition: all 0.2s linear;
+}
+
+.link_forgot_password:hover {
+    background-color: #574848;
+    color: #fff;
+}

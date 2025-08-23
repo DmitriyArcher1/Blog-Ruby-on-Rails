@@ -19,6 +19,7 @@
             <nav class="navigation">
                 <ul class="menu">
                     <li class="menu-element">
+                        <i style="color: #000;" class="fa-solid fa-house"></i>
                         <%= link_to "Главная", root_path %>
                     </li>
 
@@ -27,16 +28,21 @@
                             <%= link_to "Мой профиль", user_path(current_user) %>
                         </li>
                     <% end %>
+
+                    <% if !user_signed_in? %>
+                        <li class="menu-element">
+                            <%= link_to "Войти", new_user_session_path%>
+                        </li>
+                        
+                        <li class="menu-element">
+                            <%= link_to "Регистрация", new_user_registration_path%>
+                        </li>
+                    <% end %>
                     
                 </ul>
             </nav>
 
-            <% if !user_signed_in? %>
-                <div>
-                    <%= link_to "Войти", new_user_session_path, class: "menu-element" %>
-                    <%= link_to "Регистрация", new_user_registration_path, class: "menu-element" %>
-                </div>
-            <% end %>
+            
             
         </div>
     </header>
@@ -71,6 +77,8 @@
     <% if user_signed_in? && @blog_post.user == current_user %>
         <h1 align="center" style="font-size: 19px;"><%= link_to "Изменить пост", "/blog_posts/#{@blog_post.id}/edit", class: "edit_post" %></h1>
     <% end %>
+
+    <script src="https://kit.fontawesome.com/c6ba37b0b2.js" crossorigin="anonymous"></script>
 
 </body>
 
