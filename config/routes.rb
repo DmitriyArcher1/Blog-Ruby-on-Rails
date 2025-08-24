@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   # Пользователь
   get "/users/:id", to: "users#show", as: "user"
-  get "/users/:id/user_show_subs", to: "users#show_subs", as: :user_show_subs
+  get "/users/:id/show_subs", to: "users#show_subs", as: :user_show_subs
 
 
   get "up" => "rails/health#show", as: :rails_health_check
