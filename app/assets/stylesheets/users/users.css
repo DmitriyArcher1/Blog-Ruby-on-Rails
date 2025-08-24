@@ -123,3 +123,22 @@
     background-color: #574848;
     color: #fff;
 }
+
+/* Кнопка для удаления аккаунта */
+.delete_account_button {
+    border: none;
+    border: 1px solid #574848;
+    border-radius: 20px;
+
+    color: #574848;
+    padding: 7px 7px;
+    cursor: pointer;
+    margin-top: 10px;
+
+    transition: all 0.2s ease-in-out;
+}
+
+.delete_account_button:hover {
+    background-color: #574848;
+    color: #fff;
+}

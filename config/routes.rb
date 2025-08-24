@@ -5,12 +5,14 @@ Rails.application.routes.draw do
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
 
+  # Пользователь
   get "/users/:id", to: "users#show", as: "user"
-  get "/users/:id/show_subs", to: "users#show_subs", as: :user_show_subs
+  get "/users/:id/user_show_subs", to: "users#show_subs", as: :user_show_subs
 
 
   get "up" => "rails/health#show", as: :rails_health_check
 
+  # Посты
   get "/blog_posts/new", to: "blog_posts#new", as: :new_blog_post
   get "/blog_posts/:id", to: "blog_posts#show", as: :blog_post
   patch "/blog_posts/:id", to: "blog_posts#update"
@@ -18,10 +20,12 @@ Rails.application.routes.draw do
   get "/blog_posts/:id/edit", to: "blog_posts#edit", as: :edit_blog_post
   post "/blog_posts", to: "blog_posts#create", as: :blog_posts
 
+  # Лайки
   resources :blog_posts do
     resources :likes, only: [ :create, :destroy ]
   end
 
+  # Подписки
   post "/subscribe/:id", to: "subscriptions#create", as: :subscribe
   delete "/subscribe/:id", to: "subscriptions#destroy", as: :unsubscribe
 

@@ -113,15 +113,15 @@
     </div>
 
     <div class="actions">
-      <%= f.submit "Update" %>
+      <%= f.submit "Обновить" %>
     </div>
   <% end %>
 
   <h2 style="color: red; text-align: center;">ОПАСНАЯ ЗОНА</h2>
 
   <h3 style="text-align: center">Удаление аккаунта</h3>
-
-  <div align="center">Не нравится профиль? <%= button_to "Удалить аккаунт", registration_path(resource_name), data: { confirm: "Вы уверены?", turbo_confirm: "Вы точно уверены?" }, method: :delete %></div>
+  
+  <div align="center">Не нравится профиль? <%= button_to "Удалить аккаунт", registration_path(resource_name), class: "delete_account_button", data: { confirm: "Вы уверены?", turbo_confirm: "Вы точно уверены?" }, method: :delete %></div>
 
   <div align="center">
     <%= link_to "Назад", :back, class: "back_button" %>
