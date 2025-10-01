@@ -32,7 +32,37 @@ Rails.application.routes.draw do
   # post "/blog_posts/:id/likes", to: "likes#create"
   # delete "/blog_posts/:id/likes/:id", to: "likes#destroy"
 
+  # API маршруты
+  Rails.application.routes.draw do
+  namespace :api do
+    namespace :v1 do
+      # Маршруты для постов
+      get "/blog_posts/new", to: "blog_posts#new", as: :new_blog_post
+      get "/blog_posts/:id", to: "blog_posts#show", as: :blog_post
+      patch "/blog_posts/:id", to: "blog_posts#update"
+      delete "/blog_posts/:id", to: "blog_posts#destroy"
+      get "/blog_posts/:id/edit", to: "blog_posts#edit", as: :edit_blog_post
+      post "/blog_posts", to: "blog_posts#create", as: :blog_posts
 
+      # Маршруты для лайков
+      resources :blog_posts do
+        resources :likes, only: [ :create, :destroy ]
+      end
+
+      # Маршруты для пользователей
+      get "/users/:id", to: "users#show", as: "user"
+      get "/users/:id/show_subs", to: "users#show_subs", as: :user_show_subs
+
+      # Маршрут для подписок
+      post "/subscribe/:id", to: "subscriptions#create", as: :subscribe
+      delete "/subscribe/:id", to: "subscriptions#destroy", as: :unsubscribe
+
+      # Маршруты для сессий (авторизация)
+      # post "login", to: "sessions#create"
+      # delete "logout", to: "sessions#destroy"
+    end
+  end
+end
 
   # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
   # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
