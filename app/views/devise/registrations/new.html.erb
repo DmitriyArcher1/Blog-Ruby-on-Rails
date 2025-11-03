@@ -37,7 +37,7 @@
                   <li class="menu-element">
                       <% if user_signed_in? %>
                           <% if current_user.avatar.attached? %>
-                              <img style="width: 50px; height: 50px; border-radius: 100px;" <%= image_tag url_for(current_user.avatar) %>
+                              <img style="width: 50px; height: 50px; border-radius: 100px;" <%= image_tag url_for(current_user.avatar) %> />
                           <% else %>
                               <%= image_tag "base-avatar.jpg", style: "width: 50px; height: 50px; border-radius: 100px;" %>
                           <% end %>
@@ -70,30 +70,34 @@
     <%= render "devise/shared/error_messages", resource: resource %>
 
     <div class="field">
-      <%= f.label "Email адрес" %><br />
+      <h3>Email адрес <span style="color: red;">*</span> </h3> 
+      <!--<%= f.label "Email адрес" %></br >-->
       <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
     </div>
 
     <div class="field">
-      <%= f.label "Имя пользователя" %><br />
+      <h3>Имя пользователя <span style="color: red;">*</span> </h3>
+      <!--<%= f.label "Имя пользователя" %><br />-->
       <%= f.text_field :username, autofocus: true, autocomplete: "username" %>
     </div>
 
     <div class="field">
-      <%= f.label "Пароль" %>
+      <h3>Пароль <span style="color: red;">*</span> </h3>
+      <!--<%= f.label "Пароль" %>-->
       <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <em>(Минимум <%= @minimum_password_length %> символов)</em>
       <% end %><br />
       <%= f.password_field :password, autocomplete: "new-password" %>
     </div>
 
     <div class="field">
-      <%= f.label "Подтверждение пароля" %><br />
+      <h3>Подтверждение пароля <span style="color: red;">*</span> </h3>
+      <!--<%= f.label "Подтверждение пароля" %><br />-->
       <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
     </div>
 
     <div class="field">
-      <%= f.label "Аватар" %>
+      <%= f.label "Выбрать аватар", for: "user_avatar", class: "upload_file_button" %>
       <%= f.file_field :avatar %>
     </div>
 

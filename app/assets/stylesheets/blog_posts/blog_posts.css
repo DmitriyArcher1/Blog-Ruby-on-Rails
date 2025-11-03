@@ -1,5 +1,4 @@
 /* index.html.erb */
-
 /* Навигация */
 ul, ul li {
 	list-style: none;
@@ -61,6 +60,7 @@ a {
 }
 /* Конец навигации */
 
+/* Контейнер и обёртки */
 hr {
     border: none;
     border-top: 1px solid #ccc;
@@ -89,7 +89,7 @@ hr {
     margin: 0 auto;
 }
 
-
+/* Заголовки */
 .blog_title {
     font-size: 150px;
     color: #403e3d;
@@ -178,6 +178,13 @@ hr {
     padding: 10px 10px;
 }
 
+/* Дата публикации постов */
+.post_date {
+    color: #959595;
+    font-size: 10px;
+}
+/* ----------------------------------------------------- */
+
 /* show.html.erb */
 /* Ссылка на изменение поста */
 .edit_post {
@@ -232,6 +239,11 @@ hr {
 /* Стили для форм */
 .field {
   margin-bottom: 20px;
+  max-width: 550px;
+  text-align: center;
+  margin-bottom: 20px;
+  width: 90%;
+  margin: 25px auto;
 
   label {
     display: block;
@@ -249,7 +261,7 @@ hr {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 15px;
     box-sizing: border-box;
     font-size: 16px;
 
@@ -258,6 +270,33 @@ hr {
       border-color: #66afe9;
       box-shadow: 0 0 5px rgba(102, 175, 233, 0.5);
     }
+  }
+
+  input[type="file"] {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0); /* Надежный способ скрытия для доступности */
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .upload_file_button {
+    display: inline-block;
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    padding: 10px 20px;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    border: none;
   }
 
   textarea {
@@ -283,8 +322,8 @@ hr {
     cursor: pointer;
     border-radius: 4px; */
 
-    color: #574848;
-    border: 1px solid #868686;
+    color: #000000;
+    border: 1px solid #000000;
     padding: 5px 35px;
     font-size: 25px;
     border-radius: 20px;
@@ -294,7 +333,7 @@ hr {
     transition: all 0.2s linear;
 
     &:hover {
-        background-color: #574848;
+        background-color: #000000;
         color: #fff;
     }
 
@@ -302,4 +341,71 @@ hr {
       background-color: #3e8e41;
     } */
   }
+}
+
+/* Стили для кнопки при создании и удалении поста */
+.button_wrapper {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.submit_button {
+    background-color: #ffffff;
+    border: none;
+    color: rgb(0, 0, 0);
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 15px;
+    cursor: pointer;
+
+    transition: all 0.2s linear;
+}
+
+.submit_button:hover {
+    background-color: #7a7979;
+    color: #fff;
+}
+
+.delete_button {
+    background-color: #ffffff;
+    border: none;
+    color: rgb(0, 0, 0);
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 15px;
+    cursor: pointer;
+
+    transition: all 0.2s linear;
+}
+
+.delete_button:hover {
+    background-color: #7a7979;
+    color: #fff;
+}
+/* Конец стилей для кнопки создания и удаления поста */
+
+/* Стили для сообщений об ошибках */
+.errors_wrapper {
+    display: block;
+    text-align: center;
+    border: 1px solid #b7b7b7;
+    max-width: 470px;
+    margin: 30px auto;
+    border-radius: 30px;
+    background: #fff;
+}
+
+.errors_wrapper-title {
+    color: #a81313;
+}
+.errors_wrapper-subtitle{
+    padding: 2px;
+    color: #641515;
+    font-weight: 600;
 }

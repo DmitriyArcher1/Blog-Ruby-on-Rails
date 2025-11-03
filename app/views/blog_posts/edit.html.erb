@@ -21,7 +21,7 @@
                         <i style="color: #000;" class="fa-solid fa-house"></i>
                         <%= link_to "Главная", root_path %>
                     </li>
-
+                    
                     <li class="menu-element">
                         <% if user_signed_in? %>
                             <i style="color: #000;" class="fa-solid fa-user"></i>
@@ -32,7 +32,7 @@
                     <li class="menu-element">
                         <% if user_signed_in? %>
                             <% if current_user.avatar.attached? %>
-                                <img style="width: 50px; height: 50px; border-radius: 100px;" <%= image_tag url_for(current_user.avatar) %>
+                                <img style="width: 50px; height: 50px; border-radius: 100px;" <%= image_tag url_for(current_user.avatar) %> />
                             <% else %>
                                 <%= image_tag "base-avatar.jpg", style: "width: 50px; height: 50px; border-radius: 100px;" %>
                             <% end %>
@@ -69,7 +69,10 @@
 
     <%= render partial: "form", locals: {blog_post: @blog_post} %>
 
-    <%= button_to "Удалить пост", @blog_post, method: :delete, data: {turbo_confirm: "Вы уверены, что хотите удалить пост?"}%>
+    <hr style="max-width: 550px; margin: 25px auto; border: 0.5px solid #a9a9a9ff;">
+    <div class="button_wrapper">
+        <%= button_to "Удалить пост", @blog_post, method: :delete, data: {turbo_confirm: "Вы уверены, что хотите удалить пост?"}, class: "delete_button"%>
+    </div>
 
     <script src="https://kit.fontawesome.com/c6ba37b0b2.js" crossorigin="anonymous"></script>
         

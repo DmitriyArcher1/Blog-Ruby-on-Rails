@@ -37,7 +37,7 @@
                 <li class="menu-element">
                     <% if user_signed_in? %>
                         <% if current_user.avatar.attached? %>
-                            <img style="width: 50px; height: 50px; border-radius: 100px;" <%= image_tag url_for(current_user.avatar) %>
+                            <img style="width: 50px; height: 50px; border-radius: 100px;" <%= image_tag url_for(current_user.avatar) %> />
                         <% else %>
                             <%= image_tag "base-avatar.jpg", style: "width: 50px; height: 50px; border-radius: 100px;" %>
                         <% end %>
@@ -108,8 +108,9 @@
     </div>
 
     <div class="field">
-      <%= f.label "Аватар пользователя" %>
+      <%= f.label "Выбрать аватар", class: "upload_file_button", for: "user_avatar" %>
       <%= f.file_field :avatar %>
+      <span class="file_info"></span>
     </div>
 
     <div class="actions">
@@ -117,11 +118,13 @@
     </div>
   <% end %>
 
+  <hr style="max-width: 550px; margin: 0 auto; margin-top: 20px;">
+
   <h2 style="color: red; text-align: center;">ОПАСНАЯ ЗОНА</h2>
 
   <h3 style="text-align: center">Удаление аккаунта</h3>
   
-  <div align="center">Не нравится профиль? <%= button_to "Удалить аккаунт", registration_path(resource_name), class: "delete_account_button", data: { confirm: "Вы уверены?", turbo_confirm: "Вы точно уверены?" }, method: :delete %></div>
+  <div align="center">Не нравится профиль? <%= button_to "Удалить аккаунт", registration_path(resource_name), class: "delete_account_button", data: { confirm: "Вы уверены?", turbo_confirm: "Вы точно уверены? При удалении аккаунта все ваши посты будут автоматически удалены." }, method: :delete %></div>
 
   <div align="center">
     <%= link_to "Назад", :back, class: "back_button" %>

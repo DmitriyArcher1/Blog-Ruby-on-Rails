@@ -1,26 +1,32 @@
 <%= form_with model: @blog_post do |form| %>
     <% if form.object.errors.any? %>
-        <div>
+        <div class="errors_wrapper">
+            <h2 class="errors_wrapper-title">Не удалось опубликовать пост</h2>
             <% form.object.errors.full_messages.each do |message| %>
-                <div><%= message %></div>
+                <li class="errors_wrapper-subtitle" style="list-style: none"><%= message %></li>
             <% end %>
         </div>
     <% end %>
 
     <div class="field">
-        <%= form.label "Заголовок" %>
+        <h3>Заголовок <span style="color: red;">*</span> </h3>
+        <!--<%= form.label "Заголовок" %>-->
         <%= form.text_field :title %>
     </div>
     
     <div class="field">
-        <%= form.label "Текст поста" %>
+        <h3>Текст поста <span style="color: red;">*</span> </h3>
+        <!--<%= form.label "Текст поста" %>-->
         <%= form.text_area :content %>
     </div>
 
     <div class="field">
-        <%= form.label "Картинка для поста" %>
+        <%= form.label "Выбрать картинку для поста", class: "upload_file_button", for: "blog_post_image" %>
         <%= form.file_field :image %>
     </div>
     
-    <%= form.button %>
+    <div class="button_wrapper">
+        <%= form.button "Опубликовать", class: "submit_button" %>
+    </div>
+    
 <% end %>

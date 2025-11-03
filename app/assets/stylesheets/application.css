@@ -15,8 +15,19 @@ body{
 }
 
 .wrapper_text {
-    width: 1200px;
+    width: 750px;
     max-width: 100%;
+}
+
+.wrapper_text p {
+    overflow-wrap: break-word;
+
+    font-size: 20px;
+    font-weight: 650;
+    color: #3e2929;
+
+    text-align: justify;
+    white-space: pre-line;
 }
 
 .highlight {
